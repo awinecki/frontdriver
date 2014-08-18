@@ -5,6 +5,15 @@ module.exports = function(grunt) {
 
         pkg: grunt.file.readJSON('package.json'),
 
+        shell: {
+            startServer: {
+                options: {
+                    stdout: true
+                },
+                command: 'npm start'
+            }
+        },
+
         sass: {
             dist: {
                 files: [{
@@ -58,24 +67,59 @@ module.exports = function(grunt) {
             }
         },
 
+        copy: {
+            css: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'app/bower_components/',
+                        src: ['**/*.css'],
+                        dest: 'app/sass/libs/',
+                        rename: function(dest, src) {
+                            return dest + src.replace(/([\w-]*)\.css$/, "_$1.scss");
+                        }
+                    }
+                ]
+            }
+        },
+
         watch: {
-            files: ['<%= jshint.files %>', 'app/sass/**/*.scss'],
-            tasks: ['jshint', 'sass'],
+            files: [
+                '<%= jshint.files %>',
+                'app/sass/**/*.scss', 
+                'app/**/*.html'
+            ],
+            tasks: ['jshint', 'sasscompile'],
             options: {
                 livereload: true
+            }
+        },
+
+        concurrent: {
+            options: {
+                logConcurrentOutput: true
+            },
+            dev: {
+                tasks: ['shell:startServer', 'watch']
             }
         }
 
 
     });
 
+    grunt.loadNpmTasks('grunt-shell');
+    grunt.loadNpmTasks('grunt-concurrent');
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-copy');
+
+    grunt.registerTask('sasscompile', ['copy:css', 'sass']);
+    grunt.registerTask('dev', ['concurrent:dev']);
+    grunt.registerTask('build', ['concat', 'uglify']);
 
     grunt.registerTask('default', []);
-    grunt.registerTask('build', ['concat', 'uglify']);
 
 };

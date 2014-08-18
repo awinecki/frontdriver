@@ -7,5 +7,6 @@ jsondata/
 /app/css/
 /app/bower_components/
 /dist/
+/app/sass/libs/
 
 .DS_Store

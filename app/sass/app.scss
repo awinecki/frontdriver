@@ -1,5 +1,8 @@
-@import "bourbon";
+@import "libs/html5-boilerplate/css/normalize";
+@import "libs/html5-boilerplate/css/main";
+
 @import "bootstrap";
+@import "bourbon";
 
 h1 {
   color: red;
