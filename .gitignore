@@ -1,0 +1,11 @@
+# Node modules #
+node_modules/
+.idea/
+
+jsondata/
+.sass-cache/
+/app/css/
+/app/bower_components/
+/dist/
+
+.DS_Store

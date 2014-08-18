@@ -1,0 +1,14 @@
+{
+    "globalstrict": false,
+    "curly": true,
+    "eqnull": true,
+    "eqeqeq": true,
+    "undef": false,
+    "-W097": true,
+    "-W117": true,
+    "globals": {
+        "jQuery": true,
+        "angular": true,
+        "describe": true
+    }
+}

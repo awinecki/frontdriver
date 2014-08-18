@@ -1,0 +1,17 @@
+{
+  "name": "frontdriver",
+  "description": "Frontdriver",
+  "version": "0.0.1",
+  "homepage": "",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "1.2.x",
+    "angular-route": "1.2.x",
+    "angular-loader": "1.2.x",
+    "angular-mocks": "~1.2.x",
+    "html5-boilerplate": "~4.3.0",
+    "bootstrap-sass-official": "~3.2.0+1",
+    "bourbon": "~4.0.2"
+  }
+}
